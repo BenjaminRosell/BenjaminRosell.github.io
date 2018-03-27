@@ -118,6 +118,11 @@ var map = new mapboxgl.Map({
                 "url": "mapbox://benjaminrosell.0mbfoukb",
                 "tileSize": 256
             },
+            "orthom": {
+                "type": "raster",
+                "url": "mapbox://benjaminrosell.27lfqnme",
+                "tileSize": 256
+            },
             "satellite" : {
                 "type": "raster",
                 "url" : "mapbox://mapbox.satellite",
@@ -160,6 +165,12 @@ var map = new mapboxgl.Map({
             "source": "ortho",
             "minzoom": 0,
             "maxzoom": 24
+        },  {
+            "id": "orthom",
+            "type": "raster",
+            "source": "orthom",
+            "minzoom": 0,
+            "maxzoom": 24
         }, {
             "id": "video",
             "type": "raster",
@@ -171,7 +182,7 @@ var map = new mapboxgl.Map({
             source: 'geojson',
             paint: {
                 'circle-radius': 5,
-                'circle-color': '#000'
+                'circle-color': '#3887be'
             },
             filter: ['in', '$type', 'Point']
         }, 
@@ -184,7 +195,7 @@ var map = new mapboxgl.Map({
                 'line-join': 'round'
             },
             paint: {
-                'line-color': '#000',
+                'line-color': '#3887be',
                 'line-width': 2.5
             },
             filter: ['in', '$type', 'LineString']
@@ -197,7 +208,7 @@ var map = new mapboxgl.Map({
     /*pitch: 50*/
 });
 
-var toggleableLayerIds = [ 'ortho', 'video' ];
+var toggleableLayerIds = [ 'ortho', 'orthom', 'video' ];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];
