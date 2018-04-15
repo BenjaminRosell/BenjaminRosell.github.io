@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Add a raster tile source</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+        #menu {
+            background: #fff;
+            position: absolute;
+            z-index: 1;
+            top: 10px;
+            right: 10px;
+            border-radius: 3px;
+            width: 120px;
+            border: 1px solid rgba(0,0,0,0.4);
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        #menu a {
+            font-size: 13px;
+            color: #404040;
+            display: block;
+            margin: 0;
+            padding: 0;
+            padding: 10px;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0,0,0,0.25);
+            text-align: center;
+        }
+
+        #menu a:last-child {
+            border: none;
+        }
+
+        #menu a:hover {
+            background-color: #f8f8f8;
+            color: #404040;
+        }
+
+        #menu a.active {
+            background-color: #3887be;
+            color: #ffffff;
+        }
+
+        #menu a.active:hover {
+            background: #3074a4;
+        }
+
+        #info {
+            display: block;
+            position: relative;
+            margin: 0px auto;
+            width: 50%;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            font-size: 12px;
+            text-align: center;
+            color: #222;
+            background: #fff;
+        }
+
+        .distance-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1;
+        }
+
+        .distance-container > * {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            font-size: 11px;
+            line-height: 18px;
+            display: block;
+            margin: 0;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        #videoSetter{
+            background: #fff;
+            position: absolute;
+            z-index: 1;
+            bottom: 20px;
+            right: 25%;
+            border-radius: 3px;
+            width: 40%;
+            min-width: 500px;
+            border: 1px solid rgba(0,0,0,0.4);
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
+</head>
+<body>
+<nav id="menu"></nav>
+<div id='map'></div>
+<pre id='info'></pre>
+<div id='distance' class='distance-container'></div>
+<!-- <div id="videoSetter">
+    <input type="radio" name="corner" value="0" checked> Top Left 
+    <input type="radio" name="corner" value="1"> Top Right 
+    <input type="radio" name="corner" value="2"> Bottom Right 
+    <input type="radio" name="corner" value="3"> Bottom Left 
+</div> -->
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiYmVuamFtaW5yb3NlbGwiLCJhIjoiY2lxcHFwc3ltMDJqdWdzamZpdTFsemp2YiJ9.dGE3qe8fy-GbI6RSRPZnTg';
+
+// GeoJSON object to hold our measurement features
+var geojson = {
+    "type": "FeatureCollection",
+    "features": []
+};
+
+var videoCoordinates = [
+        [-71.37675349777396, 47.18275517727278],
+        [-71.37701673005111, 47.183033324407404],
+        [-71.37679134579128, 47.18311691594724],
+        [-71.37654613206713, 47.18287059552674]
+    ];
+
+// Used to draw a line between points
+var linestring = {
+    "type": "Feature",
+    "geometry": {
+        "type": "LineString",
+        "coordinates": []
+    }
+};
+
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: {
+        "version": 8,
+        "sources": {
+            "ortho": {
+                "type": "raster",
+                "url": "mapbox://benjaminrosell.5a0puiqb",
+                "tileSize": 256
+            },
+            "ortho90": {
+                "type": "raster",
+                "url": "mapbox://benjaminrosell.243ucxca",
+                "tileSize": 256
+            },
+            "satellite" : {
+                "type": "raster",
+                "url" : "mapbox://mapbox.satellite",
+                "tileSize": 256
+            },
+            "video": {
+                "type": "video",
+                "urls": [
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/jc.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/jc.webm"
+                ],
+                "coordinates": videoCoordinates,
+            },
+            "geojson" : {
+                "type": "geojson",
+                "data": geojson
+            }, 
+        },
+        "layers": [
+        {
+            "id": "background",
+            "type": "background",
+            "paint": {
+                "background-color": "rgb(4,7,14)"
+            }
+        }, {
+            "id": "satellite",
+            "type": "raster",
+            "source": "satellite",
+            "minzoom": 0,
+            "maxzoom": 24
+        }, {
+            "id": "ortho",
+            "type": "raster",
+            "source": "ortho",
+            "minzoom": 0,
+            "maxzoom": 24
+        },  {
+            "id": "ortho90",
+            "type": "raster",
+            "source": "ortho90",
+            "minzoom": 0,
+            "maxzoom": 24
+        }, {
+            "id": "video",
+            "type": "raster",
+            "source": "video"
+        },
+        {
+            id: 'measure-points',
+            type: 'circle',
+            source: 'geojson',
+            paint: {
+                'circle-radius': 5,
+                'circle-color': '#3887be'
+            },
+            filter: ['in', '$type', 'Point']
+        }, 
+        {
+            id: 'measure-lines',
+            type: 'line',
+            source: 'geojson',
+            layout: {
+                'line-cap': 'round',
+                'line-join': 'round'
+            },
+            paint: {
+                'line-color': '#3887be',
+                'line-width': 2.5
+            },
+            filter: ['in', '$type', 'LineString']
+        }]
+    },
+    center: [-71.3741, 47.1802], // starting position
+    zoom: 16,
+    hash: false,
+    bearing: 0,
+    /*pitch: 50*/
+});
+
+var toggleableLayerIds = [ 'ortho', 'ortho90', 'video' ];
+
+for (var i = 0; i < toggleableLayerIds.length; i++) {
+    var id = toggleableLayerIds[i];
+
+    var link = document.createElement('a');
+    link.href = '#';
+    link.className = 'active';
+    link.textContent = id;
+
+    link.onclick = function (e) {
+        var clickedLayer = this.textContent;
+        e.preventDefault();
+        e.stopPropagation();
+
+        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+        if (visibility === 'visible') {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+            this.className = '';
+        } else {
+            this.className = 'active';
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+        }
+    };
+
+    var layers = document.getElementById('menu');
+    layers.appendChild(link);
+}
+
+var distanceContainer = document.getElementById('distance');
+
+map.on('mousemove', function (e) {
+    document.getElementById('info').innerHTML =
+        JSON.stringify(e.point) + '<br />' + JSON.stringify(e.lngLat);
+    var features = map.queryRenderedFeatures(e.point, { layers: ['measure-points'] });
+    // UI indicator for clicking/hovering a point on the map
+    map.getCanvas().style.cursor = (features.length) ? 'pointer' : 'crosshair';
+});
+
+// map.on('dblclick', function(event) {
+//     var mySource = map.getSource('video');
+//     var corner = document.querySelector('input[name="corner"]:checked').value;
+//     videoCoordinates[corner] = [event.lngLat.lng, event.lngLat.lat];
+//     mySource.setCoordinates(videoCoordinates);
+//     console.log(videoCoordinates);
+// });
+
+
+map.on('load', function() {
+    //map['doubleClickZoom'].disable();
+    map.on('click', function(e) {
+        var features = map.queryRenderedFeatures(e.point, { layers: ['measure-points'] });
+
+        // Remove the linestring from the group
+        // So we can redraw it based on the points collection
+        if (geojson.features.length > 1) geojson.features.pop();
+
+        // Clear the Distance container to populate it with a new value
+        distanceContainer.innerHTML = '';
+
+        // If a feature was clicked, remove it from the map
+        if (features.length) {
+            var id = features[0].properties.id;
+            geojson.features = geojson.features.filter(function(point) {
+                return point.properties.id !== id;
+            });
+        } else {
+            var point = {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        e.lngLat.lng,
+                        e.lngLat.lat
+                    ]
+                },
+                "properties": {
+                    "id": String(new Date().getTime())
+                }
+            };
+
+            geojson.features.push(point);
+        }
+
+        if (geojson.features.length > 1) {
+            linestring.geometry.coordinates = geojson.features.map(function(point) {
+                return point.geometry.coordinates;
+            });
+
+            geojson.features.push(linestring);
+
+            // Populate the distanceContainer with total distance
+            var value = document.createElement('pre');
+            value.textContent = 'Total distance: ' + turf.lineDistance(linestring).toLocaleString() + 'km';
+            distanceContainer.appendChild(value);
+        }
+
+        map.getSource('geojson').setData(geojson);
+    });
+});
+</script>
+
+</body>
+</html>
