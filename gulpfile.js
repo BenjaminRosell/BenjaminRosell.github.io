@@ -8,7 +8,6 @@ gulp.task('watch', function () {
 
 gulp.task('browser-sync', function() {
     browserSync({
-        // proxy: "www.infoprimes.dev",
         server: {
             baseDir: "./"
         },
