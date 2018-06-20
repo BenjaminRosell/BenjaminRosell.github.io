@@ -164,6 +164,11 @@ var map = new mapboxgl.Map({
                 "url": "mapbox://benjaminrosell.ceq06kkw",
                 "tileSize": 256
             },
+            "ortho94": {
+                "type": "raster",
+                "url": "mapbox://benjaminrosell.9qwiy2ig",
+                "tileSize": 256
+            },
             "satellite" : {
                 "type": "raster",
                 //"url" : "mapbox://mapbox.run-bike-hike",
@@ -226,6 +231,12 @@ var map = new mapboxgl.Map({
             "id": "ortho93",
             "type": "raster",
             "source": "ortho93",
+            "minzoom": 0,
+            "maxzoom": 24
+        }, {
+            "id": "ortho94",
+            "type": "raster",
+            "source": "ortho94",
             "minzoom": 0,
             "maxzoom": 24
         }, {
