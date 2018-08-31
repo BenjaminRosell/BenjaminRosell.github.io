@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8' />
-    <title>Add a raster tile source</title>
+    <title>Parc National de la Jacques Cartier</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
@@ -103,12 +103,12 @@
 <div id='map'></div>
 <pre id='info'></pre>
 <div id='distance' class='distance-container'></div>
-<!-- <div id="videoSetter">
+<div id="videoSetter">
     <input type="radio" name="corner" value="0" checked> Top Left 
     <input type="radio" name="corner" value="1"> Top Right 
     <input type="radio" name="corner" value="2"> Bottom Right 
     <input type="radio" name="corner" value="3"> Bottom Left 
-</div> -->
+</div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiYmVuamFtaW5yb3NlbGwiLCJhIjoiY2lxcHFwc3ltMDJqdWdzamZpdTFsemp2YiJ9.dGE3qe8fy-GbI6RSRPZnTg';
 
@@ -119,10 +119,10 @@ var geojson = {
 };
 
 var videoCoordinates = [
-        [-71.37675349777396, 47.18275517727278],
-        [-71.37701673005111, 47.183033324407404],
-        [-71.37679134579128, 47.18311691594724],
-        [-71.37654613206713, 47.18287059552674]
+        [-71.45763007237368, 47.31615507227232],
+        [-71.45725318769601, 47.31713254557346],
+        [-71.45639013809567, 47.31699397006449],
+        [-71.45674320385062, 47.31599173655832]
     ];
 
 // Used to draw a line between points
@@ -140,48 +140,63 @@ var map = new mapboxgl.Map({
         "version": 8,
         "sources": {
             "ortho": {
+                // Au dela
                 "type": "raster",
                 "url": "mapbox://benjaminrosell.5178zn3k",
                 "tileSize": 256
             },
             "ortho90": {
+                // Delta
                 "type": "raster",
                 "url": "mapbox://benjaminrosell.2omfqox1",
                 "tileSize": 256
             },
-            "ortho91": {
+            "the_end": {
+                // The End
                 "type": "raster",
                 "url": "mapbox://benjaminrosell.bv07axqb",
                 "tileSize": 256
             },
             "ortho92": {
+                // Ekwatek
                 "type": "raster",
                 "url": "mapbox://benjaminrosell.1jioqzbu",
                 "tileSize": 256
             },
             "ortho93": {
+                // Orignal
                 "type": "raster",
                 "url": "mapbox://benjaminrosell.ceq06kkw",
                 "tileSize": 256
             },
             "ortho94": {
+                // Scotora
                 "type": "raster",
                 "url": "mapbox://benjaminrosell.9qwiy2ig",
                 "tileSize": 256
             },
             "ortho95": {
+                // Home
                 "type": "raster",
                 "url": "mapbox://benjaminrosell.1na3mitm",
                 "tileSize": 256
             },
             "ortho96": {
+                // Raqueteur
                 "type": "raster",
                 "url": "mapbox://benjaminrosell.5q7ugdq8",
                 "tileSize": 256
             },
             "ortho97": {
+                // The Wall + Manual Flight
                 "type": "raster",
                 "url": "mapbox://benjaminrosell.b205lcj4",
+                "tileSize": 256
+            },
+            "ortho98": {
+                // The Pont Banc
+                "type": "raster",
+                "url": "mapbox://benjaminrosell.3oagn0oo",
                 "tileSize": 256
             },
             "satellite" : {
@@ -195,8 +210,8 @@ var map = new mapboxgl.Map({
             "video": {
                 "type": "video",
                 "urls": [
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/jc.mp4",
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/jc.webm"
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora-.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora.webm"
                 ],
                 "coordinates": videoCoordinates,
             },
@@ -231,9 +246,9 @@ var map = new mapboxgl.Map({
             "minzoom": 0,
             "maxzoom": 24
         }, {
-            "id": "ortho91",
+            "id": "the_end",
             "type": "raster",
-            "source": "ortho91",
+            "source": "the_end",
             "minzoom": 0,
             "maxzoom": 24
         }, {
@@ -270,6 +285,12 @@ var map = new mapboxgl.Map({
             "id": "ortho97",
             "type": "raster",
             "source": "ortho97",
+            "minzoom": 0,
+            "maxzoom": 24
+        }, {
+            "id": "ortho98",
+            "type": "raster",
+            "source": "ortho98",
             "minzoom": 0,
             "maxzoom": 24
         }, {
@@ -349,17 +370,17 @@ map.on('mousemove', function (e) {
     map.getCanvas().style.cursor = (features.length) ? 'pointer' : 'crosshair';
 });
 
-// map.on('dblclick', function(event) {
-//     var mySource = map.getSource('video');
-//     var corner = document.querySelector('input[name="corner"]:checked').value;
-//     videoCoordinates[corner] = [event.lngLat.lng, event.lngLat.lat];
-//     mySource.setCoordinates(videoCoordinates);
-//     console.log(videoCoordinates);
-// });
+map.on('dblclick', function(event) {
+    var mySource = map.getSource('video');
+    var corner = document.querySelector('input[name="corner"]:checked').value;
+    videoCoordinates[corner] = [event.lngLat.lng, event.lngLat.lat];
+    mySource.setCoordinates(videoCoordinates);
+    console.log(videoCoordinates);
+});
 
 
 map.on('load', function() {
-    //map['doubleClickZoom'].disable();
+    map['doubleClickZoom'].disable();
     map.on('click', function(e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ['measure-points'] });
 
