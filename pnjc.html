@@ -7,6 +7,7 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="preload" as="video" href="https://s3.ca-central-1.amazonaws.com/filesproject/Scotora-.mp4">
     <style>
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -49,6 +50,48 @@
         }
 
         #menu a.active:hover {
+            background: #3074a4;
+        }
+
+        #fly {
+            background: #fff;
+            position: absolute;
+            z-index: 1;
+            top: 10px;
+            left: 10px;
+            border-radius: 3px;
+            width: 120px;
+            border: 1px solid rgba(0,0,0,0.4);
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        #fly a {
+            font-size: 13px;
+            color: #404040;
+            display: block;
+            margin: 0;
+            padding: 0;
+            padding: 10px;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0,0,0,0.25);
+            text-align: center;
+        }
+
+        #fly a:last-child {
+            border: none;
+        }
+
+        #fly a:hover {
+            background-color: #f8f8f8;
+            color: #404040;
+        }
+
+        #fly a.active {
+            background-color: #3887be;
+            color: #ffffff;
+        }
+
+        #fly a.active:hover {
             background: #3074a4;
         }
 
@@ -100,6 +143,9 @@
 </head>
 <body>
 <nav id="menu"></nav>
+<nav id="fly">
+    <a href="#" id="scotora">Scotora</a>
+</nav>
 <div id='map'></div>
 <pre id='info'></pre>
 <div id='distance' class='distance-container'></div>
@@ -324,7 +370,7 @@ var map = new mapboxgl.Map({
         }]
     },
     center: [-71.3741, 47.1802], // starting position
-    zoom: 16,
+    zoom: 15,
     hash: false,
     bearing: 0,
     /*pitch: 50*/
@@ -376,6 +422,13 @@ map.on('dblclick', function(event) {
     videoCoordinates[corner] = [event.lngLat.lng, event.lngLat.lat];
     mySource.setCoordinates(videoCoordinates);
     console.log(videoCoordinates);
+});
+
+document.getElementById('scotora').addEventListener('click', function () {
+    map.flyTo({
+        center: [ -71.45697024894947, 47.316608763638015],
+        zoom: 18
+    });
 });
 
 
