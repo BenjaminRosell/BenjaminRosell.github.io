@@ -540,56 +540,56 @@ var map = new mapboxgl.Map({
             "scotora": {
                 "type": "video",
                 "urls": [
-                    "https://benjaminrosell.github.io/videos/Scotora.mp4",
-                    "https://benjaminrosell.github.io/videos/Scotora.webm"
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora-.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora.webm"
                 ],
                 "coordinates": rapids[2]['video'],
             },
             "rapide7": {
                 "type": "video",
                 "urls": [
-                    "https://benjaminrosell.github.io/videos/rapide7.mp4",
-                    "https://benjaminrosell.github.io/videos/rapide7.webm"
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/rapide7.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/rapide7.webm"
                 ],
                 "coordinates": rapids[9]['video'],
             },
             // "video": {
             //     "type": "video",
             //     "urls": [
-            //         "https://benjaminrosell.github.io/videos/portage3.mp4",
-            //         "https://benjaminrosell.github.io/videos/portage3.webm"
+            //         "https://s3.ca-central-1.amazonaws.com/filesproject/portage3.mp4",
+            //         "https://s3.ca-central-1.amazonaws.com/filesproject/portage3.webm"
             //     ],
             //     "coordinates": videoCoordinates,
             // },
             "video": {
                 "type": "video",
                 "urls": [
-                    "https://benjaminrosell.github.io/videos/portage3.mp4",
-                    "https://benjaminrosell.github.io/videos/portage3.webm"
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage3.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage3.webm"
                 ],
                 "coordinates": rapids[4]['video'][2],
             },
             "portage2": {
                 "type": "video",
                 "urls": [
-                    "https://benjaminrosell.github.io/videos/portage2.mp4",
-                    "https://benjaminrosell.github.io/videos/portage2.webm"
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage2.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage2.webm"
                 ],
                 "coordinates": rapids[4]['video'][1],
             },
             "portage1": {
                 "type": "video",
                 "urls": [
-                    "https://benjaminrosell.github.io/videos/portage1.mp4",
-                    "https://benjaminrosell.github.io/videos/portage1.webm"
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage1.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage1.webm"
                 ],
                 "coordinates": rapids[4]['video'][0],
             },
             "morillon": {
                 "type": "video",
                 "urls": [
-                    "https://benjaminrosell.github.io/videos/Scotora2.mp4",
-                    "https://benjaminrosell.github.io/videos/Scotora2.webm"
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora2.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora2.webm"
                 ],
                 "coordinates": rapids[3]['video'],
             },
