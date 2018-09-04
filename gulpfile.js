@@ -14,7 +14,7 @@ gulp.task('browser-sync', function() {
         files: [
             "*.html",
             "css/*.css",
-            "js/*.js"
+            "javascript/*.js"
         ]
     });
 });
