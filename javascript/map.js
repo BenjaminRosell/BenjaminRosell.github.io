@@ -540,7 +540,7 @@ var map = new mapboxgl.Map({
             "scotora": {
                 "type": "video",
                 "urls": [
-                    "https://benjaminrosell.github.io/videos/Scotora-.mp4",
+                    "https://benjaminrosell.github.io/videos/Scotora.mp4",
                     "https://benjaminrosell.github.io/videos/Scotora.webm"
                 ],
                 "coordinates": rapids[2]['video'],
