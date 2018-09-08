@@ -1,4 +1,4 @@
- $(document).ready(function () {
+$(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
         $(this).toggleClass('active');
@@ -11,6 +11,7 @@
 
 var debug = false;
 var distanceMatrix = false;
+var activeRapids = [];
 mapboxgl.accessToken = 'pk.eyJ1IjoiYmVuamFtaW5yb3NlbGwiLCJhIjoiY2lxcHFwc3ltMDJqdWdzamZpdTFsemp2YiJ9.dGE3qe8fy-GbI6RSRPZnTg';
 
 /*-------------------------------------------------------------------
@@ -33,10 +34,10 @@ if (distanceMatrix) {
 }
 
 var videoCoordinates = [
-  [-71.459387741462, 47.31149961003777 ], 
-  [-71.45951648749264, 47.310764902520845 ], 
-  [-71.46060546435568, 47.31060122866148 ], 
-  [-71.46011730231035, 47.31172147514903 ] 
+    [-71.35580161612262, 47.143516318026 ], 
+    [-71.35411079333707, 47.14407432136596 ], 
+    [-71.35364805337296, 47.143475498559496 ], 
+    [-71.3552988567141, 47.142898774961424 ]
 ];
 
 var portages = {
@@ -299,12 +300,20 @@ var rapids =  [
         lenght: "30 m",
         lon: -71.45697024894947,
         lat: 47.316608763638015,
-        video: [
-            [-71.45763007237368, 47.31615507227232],
-            [-71.45725318769601, 47.31713254557346],
-            [-71.45639013809567, 47.31699397006449],
-            [-71.45674320385062, 47.31599173655832]
-        ],
+        video: [{
+                name: "scotora",
+                sources: [
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora-.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora.webm"
+                ],
+                coordinates: [
+                    [-71.45763007237368, 47.31615507227232],
+                    [-71.45725318769601, 47.31713254557346],
+                    [-71.45639013809567, 47.31699397006449],
+                    [-71.45674320385062, 47.31599173655832]
+                ]
+            }
+        ]
     }, {
         id: 4,
         name: "Rapide du Morillon",
@@ -312,12 +321,19 @@ var rapids =  [
         lenght: "40 m",
         lon: -71.4590611624667,
         lat: 47.313625857155984,
-        video : [
-            [-71.45963493302139, 47.31331187227036],
-            [-71.45908817485953, 47.314072107684126],
-            [-71.45843947872903, 47.31388152627767],
-            [-71.45898623689085, 47.31309615609831],
-        ],
+        video : [{
+            name: "morillon",
+            sources: [
+                "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora2.mp4",
+                "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora2.webm"
+            ],
+            coordinates: [
+                [-71.45963493302139, 47.31331187227036],
+                [-71.45908817485953, 47.314072107684126],
+                [-71.45843947872903, 47.31388152627767],
+                [-71.45898623689085, 47.31309615609831],
+            ]
+        }],
     },  {
         id: 5,
         name: "Rapide du Grand Portage",
@@ -327,24 +343,43 @@ var rapids =  [
         lat: 47.31132684558969,
         zoom: 17,
         video: [
-            [
-                [-71.45886870001681, 47.312393577758144 ], 
-                [-71.45947704948377, 47.31111493208118 ], 
-                [-71.46043737256743, 47.31134473704148 ], 
-                [-71.45980729633449, 47.31256740046794 ] 
-            ],
-            [
-                [-71.45939454153343, 47.31168005198174 ], 
-                [-71.45985816828487, 47.31048224019111 ], 
-                [-71.4608174975022, 47.31063842689909 ], 
-                [-71.46033345934616, 47.31185205124433 ] 
-            ],
-            [
-                [-71.46023212393038, 47.31003163639855 ], 
-                [-71.45913301263928, 47.31098595303109 ], 
-                [-71.45828298052922, 47.31057849410425 ], 
-                [-71.45946907184397, 47.309554471623386 ] 
-            ]
+            {
+                name: "portage1",
+                sources: [
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage1.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage1.webm"
+                ],
+                coordinates: [
+                    [-71.45886870001681, 47.312393577758144 ], 
+                    [-71.45947704948377, 47.31111493208118 ], 
+                    [-71.46043737256743, 47.31134473704148 ], 
+                    [-71.45980729633449, 47.31256740046794 ] 
+                ]
+            }, {
+                name: "portage2",
+                sources: [
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage2.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage2.webm"
+                ],
+                coordinates: [
+                    [-71.45939454153343, 47.31168005198174 ], 
+                    [-71.45985816828487, 47.31048224019111 ], 
+                    [-71.4608174975022, 47.31063842689909 ], 
+                    [-71.46033345934616, 47.31185205124433 ] 
+                ]
+            }, {
+                name: "portage3",
+                sources: [
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage3.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage3.webm"
+                ],
+                coordinates: [
+                    [-71.46023212393038, 47.31003163639855 ], 
+                    [-71.45913301263928, 47.31098595303109 ], 
+                    [-71.45828298052922, 47.31057849410425 ], 
+                    [-71.45946907184397, 47.309554471623386 ] 
+                ]
+            },
         ]
     }, {
         id: 6,
@@ -368,6 +403,19 @@ var rapids =  [
         lenght: "18 m",
         lon: -71.4246245514596,
         lat: 47.2564175114334,
+        video : [{
+            name: "roches",
+            sources: [
+                "https://s3.ca-central-1.amazonaws.com/filesproject/roches.mp4",
+                "https://s3.ca-central-1.amazonaws.com/filesproject/roches.webm"
+            ],
+            coordinates: [
+                [-71.42520765677996, 47.25588207236865 ], 
+                [-71.42518698542278, 47.25694635043743 ], 
+                [-71.42429783883712, 47.25694339345111 ], 
+                [-71.42428435839754, 47.25589425984529 ] 
+            ]
+        }],
     }, {
         id: 9,
         name: "Rapide des abris",
@@ -375,6 +423,19 @@ var rapids =  [
         lenght: "30 m",
         lon: -71.4216829867424,
         lat: 47.2490226624831,
+        video : [{
+            name: "abris",
+            sources: [
+                "https://s3.ca-central-1.amazonaws.com/filesproject/abris.mp4",
+                "https://s3.ca-central-1.amazonaws.com/filesproject/abris.webm"
+            ],
+            coordinates: [
+                [-71.42146274286468, 47.24967958921539 ], 
+                [-71.42089953036124, 47.24877159190538 ], 
+                [-71.42177452121724, 47.24854288336314 ], 
+                [-71.42229750425768, 47.249508914218836]
+            ]
+        }],
     }, {
         id: 10,
         name: "Rapide 7 - à la cordelle",
@@ -382,12 +443,19 @@ var rapids =  [
         lenght: "30 m",
         lon: -71.42073780853322,
         lat:47.24745713653698,
-        video : [
-            [-71.42113527019113, 47.24701741543251 ], 
-            [-71.42133449075695, 47.248040833439916 ], 
-            [-71.42039467233778, 47.24814052114294 ], 
-            [-71.42018224205476, 47.24711244793926 ] 
-        ],
+        video : [{
+            name: "rapide7",
+            sources: [
+                "https://s3.ca-central-1.amazonaws.com/filesproject/rapide7.mp4",
+                "https://s3.ca-central-1.amazonaws.com/filesproject/rapide7.webm"
+            ],
+            coordinates: [
+                [-71.42113527019113, 47.24701741543251 ], 
+                [-71.42133449075695, 47.248040833439916 ], 
+                [-71.42039467233778, 47.24814052114294 ], 
+                [-71.42018224205476, 47.24711244793926 ] 
+            ]
+        }],
     }, {
         id: 11,
         name: "Rapide des Pins",
@@ -409,6 +477,19 @@ var rapids =  [
         lenght: "220 m",
         lon: -71.40611203794406,
         lat: 47.2222655577163,
+        video: [{
+            name: "bedard",
+            sources: [
+                "https://s3.ca-central-1.amazonaws.com/filesproject/bedard.mp4",
+                "https://s3.ca-central-1.amazonaws.com/filesproject/bedard.webm"
+            ],
+            coordinates: [
+                [-71.40631435522586, 47.222853254193325 ], 
+                [-71.4050878380569, 47.22213993120019 ], 
+                [-71.40568099584003, 47.221621630729516 ], 
+                [-71.40696858223903, 47.222353636559376 ]
+            ]
+        }],
     }, {
         id: 14,
         name: "Rapide 11",
@@ -416,7 +497,32 @@ var rapids =  [
         lenght: "220 m",
         lon: -71.39780479203961,
         lat: 47.21027044843467,
-        zoom: 17
+        zoom: 17,
+        video: [{
+            name: "r11",
+            sources: [
+                "https://s3.ca-central-1.amazonaws.com/filesproject/r11.mp4",
+                "https://s3.ca-central-1.amazonaws.com/filesproject/r11.webm"
+            ],
+            coordinates: [
+                [-71.39830163851053, 47.2113284093673 ], 
+                [-71.39716935068847, 47.210233008148634 ], 
+                [-71.39810733026097, 47.209838561429876 ], 
+                [-71.39916957378729, 47.2109234827027 ]
+            ]
+        }, {
+            name: "r112",
+            sources: [
+                "https://s3.ca-central-1.amazonaws.com/filesproject/r112.mp4",
+                "https://s3.ca-central-1.amazonaws.com/filesproject/r112.webm"
+            ],
+            coordinates: [
+                [-71.39740069280967, 47.21067322121385 ], 
+                [-71.39619304553041, 47.20963298008414 ], 
+                [-71.39709313862986, 47.20919802922219 ], 
+                [-71.39821310759007, 47.210236650874435 ]
+            ]
+        }],
     }, {
         id: 15,
         name: "Rapide du Bouleau",
@@ -438,7 +544,20 @@ var rapids =  [
         lenght: "150 m",
         lon: -71.3546767668524,
         lat: 47.14354600695992,
-        zoom: 17
+        zoom: 17,
+        video: [{
+            name: "frappant",
+            sources: [
+                "https://s3.ca-central-1.amazonaws.com/filesproject/frappant.mp4",
+                "https://s3.ca-central-1.amazonaws.com/filesproject/frappant.webm"
+            ],
+            coordinates: [
+                [-71.35580161612262, 47.143516318026 ], 
+                [-71.35411079333707, 47.14407432136596 ], 
+                [-71.35364805337296, 47.143475498559496 ], 
+                [-71.3552988567141, 47.142898774961424 ]
+            ]
+        }]
     }, {
         id: 18,
         name: "Rapide de l'Épaule",
@@ -537,61 +656,13 @@ var map = new mapboxgl.Map({
                 //"url" : "mapbox://mapbox.streets-satellite",
                 "tileSize": 256
             },
-            "scotora": {
-                "type": "video",
-                "urls": [
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora-.mp4",
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora.webm"
-                ],
-                "coordinates": rapids[2]['video'],
-            },
-            "rapide7": {
-                "type": "video",
-                "urls": [
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/rapide7.mp4",
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/rapide7.webm"
-                ],
-                "coordinates": rapids[9]['video'],
-            },
-            // "video": {
-            //     "type": "video",
-            //     "urls": [
-            //         "https://s3.ca-central-1.amazonaws.com/filesproject/portage3.mp4",
-            //         "https://s3.ca-central-1.amazonaws.com/filesproject/portage3.webm"
-            //     ],
-            //     "coordinates": videoCoordinates,
-            // },
             "video": {
                 "type": "video",
                 "urls": [
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage3.mp4",
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage3.webm"
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/monstre2.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/monstre2.webm"
                 ],
-                "coordinates": rapids[4]['video'][2],
-            },
-            "portage2": {
-                "type": "video",
-                "urls": [
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage2.mp4",
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage2.webm"
-                ],
-                "coordinates": rapids[4]['video'][1],
-            },
-            "portage1": {
-                "type": "video",
-                "urls": [
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage1.mp4",
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/portage1.webm"
-                ],
-                "coordinates": rapids[4]['video'][0],
-            },
-            "morillon": {
-                "type": "video",
-                "urls": [
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora2.mp4",
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/Scotora2.webm"
-                ],
-                "coordinates": rapids[3]['video'],
+                "coordinates": videoCoordinates,
             },
         },
         "layers": [
@@ -668,25 +739,9 @@ var map = new mapboxgl.Map({
             "minzoom": 0,
             "maxzoom": 24
         }, {
-            "id": "portage1",
-            "type": "raster",
-            "source": "portage1"
-        }, {
-            "id": "portage2",
-            "type": "raster",
-            "source": "portage2"
-        }, {
             "id": "video",
             "type": "raster",
-            "source": "video"
-        }, {
-            "id": "scotora",
-            "type": "raster",
-            "source": "scotora"
-        }, {
-            "id": "morillon",
-            "type": "raster",
-            "source": "morillon"
+            "source": "video",
         }]
     },
     center: [-71.3741, 47.1802], // starting position
@@ -695,7 +750,6 @@ var map = new mapboxgl.Map({
     bearing: 0,
     /*pitch: 50*/
 });
-
 
 
 var distanceContainer = document.getElementById('distance');
@@ -828,6 +882,7 @@ map.on('load', function() {
 |  FLYTO MENU
 |
 |  Purpose:  Adds capability for rapids navigation on the flyTo meny
+|  It also allows for vidos to be displayed on the move.
 *-------------------------------------------------------------------*/
  
 // Create a navigation menu on the sidebar to fly from rapid to rapid 
@@ -853,6 +908,7 @@ for (var i = 0; i < rapids.length; i++) {
 $('.canFly').click(function(event) {
     event.preventDefault;
     $('.canFly').parent().removeClass('active');
+
     //Get the rapid coordonates
     var rapid = rapids[$(this).data('rapid') - 1 ];
     $(this).parent().toggleClass('active');
@@ -862,6 +918,35 @@ $('.canFly').click(function(event) {
         center: [ rapid.lon, rapid.lat],
         zoom: zoom
     });
+
+    if (activeRapids.length >= 1) {
+        for (var i = 0; i < activeRapids.length; i++) {
+            map.removeLayer(activeRapids[i]);
+            map.removeSource(activeRapids[i]);
+            activeRapids.splice(i, 1);
+        }
+    }
+
+    if (rapid.video !== null && rapid.video !== undefined && rapid.video.length >= 1) {
+        for (var i = 0; i < rapid.video.length; i++) {
+            var video = rapid.video[i];
+            //console.log(video.coordinates);
+            map.addSource(video.name, {
+                "type": "video",
+                "urls": video.sources,
+                "coordinates": video.coordinates,
+            });
+
+            map.addLayer({
+                "id": video.name,
+                "type": "raster",
+                "source": video.name,
+                "visibility" : "visible"
+            });
+
+            activeRapids.push(video.name);
+        }
+    }
 });
 
 /*-------------------------------------------------------------------
@@ -872,8 +957,9 @@ $('.canFly').click(function(event) {
 
 var toggleableLayersCollection = {
     "portages" : [ 'portages', 'portages-names' ],
-    "videos": [ 'ortho', 'ortho90', 'video' ],
-    "orthomaps": [ 'ortho', 'ortho90', 'video' ],
+    "video": [ 'video' ],
+    "videos": [],
+    "orthomaps": [ "ortho", "ortho90", "the_end", "ortho92", "ortho93", "ortho94", "ortho95", "ortho96", "ortho97", "ortho98" ],
 };
 
 $('.toggler').click(function(event) {
@@ -882,6 +968,11 @@ $('.toggler').click(function(event) {
     var category = $this.data('toggler');
 
     layers = toggleableLayersCollection[category];
+
+    if (category == 'videos') {
+        layers = [] ;
+        layers = activeRapids;
+    }
 
     for (var i = 0; i < layers.length; i++) {
         var visibility = map.getLayoutProperty(layers[i], 'visibility');
