@@ -281,23 +281,26 @@ var rapids =  [
     {
         id: 1,
         name: "Le Monstre",
+        label: [-71.44533433036077, 47.34133345968175],
         class: "R 2-3",
-        lenght: "50 m",
+        length: "50 m",
         lon: -71.44598610714151,
         lat: 47.341194417431296,
     }, {
         id: 2,
         name: "Le dangereux",
+        label: [-71.45011932488944, 47.330206955034015],
         class: "R 3",
-        lenght: "90 m",
+        length: "90 m",
         lon: -71.45105426190308,
         lat: 47.32971923040378,
         zoom: 16,
     }, {
         id: 3,
         name: "Rapide du Scotora",
+        label: [-71.4562996967015, 47.31654784739817],
         class: "R 1",
-        lenght: "30 m",
+        length: "30 m",
         lon: -71.45697024894947,
         lat: 47.316608763638015,
         video: [{
@@ -317,8 +320,9 @@ var rapids =  [
     }, {
         id: 4,
         name: "Rapide du Morillon",
+        label: [-71.45869638202967, 47.31338126874013],
         class: "R 1",
-        lenght: "40 m",
+        length: "40 m",
         lon: -71.4590611624667,
         lat: 47.313625857155984,
         video : [{
@@ -337,8 +341,9 @@ var rapids =  [
     },  {
         id: 5,
         name: "Rapide du Grand Portage",
+        label: [-71.45941992794906, 47.31109952307108],
         class: "R 3",
-        lenght: "300 m",
+        length: "300 m",
         lon: -71.46004220046696,
         lat: 47.31132684558969,
         zoom: 17,
@@ -384,23 +389,26 @@ var rapids =  [
     }, {
         id: 6,
         name: "Rapide de la Jetée",
+        label: [-71.45777147037379, 47.306787747532894],
         class: "R 1",
-        lenght: "30 m",
+        length: "30 m",
         lon: -71.45860027295593,
         lat: 47.30680138801881
     }, {
         id: 7,
         name: "Rapide du ruisseau de Larabelle",
+        label: [-71.4570709507976, 47.301290967087084],
         class: "R 1",
-        lenght: "300 m",
+        length: "300 m",
         lon: -71.45615363532728,
         lat: 47.30164565560136,
         zoom: 17,
     }, {
         id: 8,
         name: "Rapide des Trois Roches",
+        label: [-71.42460424142735, 47.25676471539387],
         class: "R 2",
-        lenght: "18 m",
+        length: "18 m",
         lon: -71.4246245514596,
         lat: 47.2564175114334,
         video : [{
@@ -419,8 +427,9 @@ var rapids =  [
     }, {
         id: 9,
         name: "Rapide des abris",
+        label: [-71.42072275591468, 47.24913645731263],
         class: "R 2-3",
-        lenght: "30 m",
+        length: "30 m",
         lon: -71.4216829867424,
         lat: 47.2490226624831,
         video : [{
@@ -439,8 +448,9 @@ var rapids =  [
     }, {
         id: 10,
         name: "Rapide 7 - à la cordelle",
+        label: [-71.42028987959966, 47.24766743539567],
         class: "R 1",
-        lenght: "30 m",
+        length: "30 m",
         lon: -71.42073780853322,
         lat:47.24745713653698,
         video : [{
@@ -459,22 +469,25 @@ var rapids =  [
     }, {
         id: 11,
         name: "Rapide des Pins",
+        label: [-71.41738503140895, 47.24330562875761],
         class: "R 1",
-        lenght: "150 m",
+        length: "150 m",
         lon: -71.41798048182629,
         lat: 47.24323552346493,
     }, {
         id: 12,
         name: "Rapide des Pont-Banc",
+        label: [-71.408836525298, 47.22694717321002],
         class: "R 2",
-        lenght: "200 m",
+        length: "200 m",
         lon: -71.40837786757679,
         lat: 47.22708833755141,
     }, {
         id: 13,
         name: "Rapide à Bedard",
+        label: [-71.40642317380683, 47.22201326022858],
         class: "R 2",
-        lenght: "220 m",
+        length: "220 m",
         lon: -71.40611203794406,
         lat: 47.2222655577163,
         video: [{
@@ -493,8 +506,9 @@ var rapids =  [
     }, {
         id: 14,
         name: "Rapide 11",
+        label: [-71.39785843136956, 47.209915853334934],
         class: "R 2",
-        lenght: "220 m",
+        length: "220 m",
         lon: -71.39780479203961,
         lat: 47.21027044843467,
         zoom: 17,
@@ -526,22 +540,25 @@ var rapids =  [
     }, {
         id: 15,
         name: "Rapide du Bouleau",
+        label: [-71.39456805885219, 47.20489701607903],
         class: "R 2",
-        lenght: "300 m",
+        length: "300 m",
         lon: -71.39535316567672,
         lat: 47.20472514333031,
     }, {
         id: 16,
         name: "Rapide le Mouron",
+        label: [-71.35442914967624, 47.15214202026877],
         class: "R 1",
-        lenght: "450 m",
+        length: "450 m",
         lon: -71.35553371017397,
         lat: 47.152463437426775,
     }, {
         id: 17,
         name: "Rapide le Frappant",
+        label: [-71.35522930189478, 47.1440622931826],
         class: "R 2",
-        lenght: "150 m",
+        length: "150 m",
         lon: -71.3546767668524,
         lat: 47.14354600695992,
         zoom: 17,
@@ -561,8 +578,9 @@ var rapids =  [
     }, {
         id: 18,
         name: "Rapide de l'Épaule",
+        label: [-71.36118316649639, 47.132959018116594],
         class: "R 2",
-        lenght: "190 m",
+        length: "190 m",
         lon: -71.36032689131522,
         lat: 47.132882201898326,
     }
@@ -576,6 +594,29 @@ var linestring = {
         "coordinates": []
     }
 };
+
+var labels = {
+    "type": "FeatureCollection",
+    "features": []
+}
+
+for (var i = 0; i < rapids.length; i++) {
+    rapids[i];
+    var feature = {
+        "type": "Feature",
+        "properties": {
+            "name": rapids[i].name,
+            "class": rapids[i].class,
+            "length": rapids[i].length
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": rapids[i].label
+        }
+    }
+
+    labels.features.push(feature);
+}
 
 /*-------------------------------------------------------------------
 |  INITIALIZING THE MAP
@@ -647,6 +688,18 @@ var map = new mapboxgl.Map({
                 // The Pont Banc
                 "type": "raster",
                 "url": "mapbox://benjaminrosell.3oagn0oo",
+                "tileSize": 256
+            },
+            "orignal": {
+                // The Pont Banc
+                "type": "raster",
+                "url": "mapbox://benjaminrosell.aecdi6dg",
+                "tileSize": 256
+            },
+            "camps3": {
+                // The Pont Banc
+                "type": "raster",
+                "url": "mapbox://benjaminrosell.3mgsvmbv",
                 "tileSize": 256
             },
             "satellite" : {
@@ -730,6 +783,18 @@ var map = new mapboxgl.Map({
             "id": "ortho97",
             "type": "raster",
             "source": "ortho97",
+            "minzoom": 0,
+            "maxzoom": 24
+        }, {
+            "id": "orignal",
+            "type": "raster",
+            "source": "orignal",
+            "minzoom": 0,
+            "maxzoom": 24
+        }, {
+            "id": "camps3",
+            "type": "raster",
+            "source": "camps3",
             "minzoom": 0,
             "maxzoom": 24
         }, {
@@ -848,21 +913,6 @@ map.on('load', function() {
     map.addSource("portages", portages);
 
     map.addLayer({
-        "id": "portages",
-        "type": "line",
-        "source": "portages",
-        "layout": {
-            "line-join": "round",
-            "line-cap": "round",
-        },
-        "paint": {
-            "line-color": "#ff2400",
-            "line-width": 4,
-            "line-opacity": 0.6
-        }
-    });
-
-    map.addLayer({
         "id": "portages-names",
         "type": "symbol",
         "source": "portages",
@@ -876,6 +926,46 @@ map.on('load', function() {
             "text-color": "#fff"
         }
     });
+
+    map.addLayer({
+        "id": "portages",
+        "type": "line",
+        "source": "portages",
+        "layout": {
+            "line-join": "round",
+            "line-cap": "round",
+        },
+        "paint": {
+            "line-color": "#ff2400",
+            "line-width": 4,
+            "line-opacity": 0.6
+        }
+    }, "portages-names");
+
+
+    map.addLayer({
+        'id': 'labels',
+        'type': 'symbol',
+        'source': {
+            'type': 'geojson',
+            'data': labels
+        },
+        "layout": {
+            "icon-image": 'dog-park-11',
+            "text-field": ['format',
+                ['get', 'name'], { 'font-scale': 1.2 },
+                '\n', {},
+                ['get', 'class'], { 'font-scale': .9 },
+                '\n', {},
+                ['get', 'length'], { 'font-scale': .7 }],
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0],
+            "text-anchor": "top"
+        },
+        "paint": {
+            "text-color": "#F8F714"
+        }  
+    }, "portages");
 });
 
 /*-------------------------------------------------------------------
@@ -942,7 +1032,7 @@ $('.canFly').click(function(event) {
                 "type": "raster",
                 "source": video.name,
                 "visibility" : "visible"
-            });
+            }, "labels");
 
             activeRapids.push(video.name);
         }
@@ -958,6 +1048,7 @@ $('.canFly').click(function(event) {
 var toggleableLayersCollection = {
     "portages" : [ 'portages', 'portages-names' ],
     "video": [ 'video' ],
+    "labels": [ 'labels' ],
     "videos": [],
     "orthomaps": [ "ortho", "ortho90", "the_end", "ortho92", "ortho93", "ortho94", "ortho95", "ortho96", "ortho97", "ortho98" ],
 };
