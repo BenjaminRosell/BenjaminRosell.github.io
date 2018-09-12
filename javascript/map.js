@@ -747,14 +747,14 @@ var map = new mapboxgl.Map({
                 //"url" : "mapbox://mapbox.streets-satellite",
                 "tileSize": 256
             },
-            "video": {
-                "type": "video",
-                "urls": [
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/haut.mp4",
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/haut.webm"
-                ],
-                "coordinates": videoCoordinates,
-            },
+            // "video": {
+            //     "type": "video",
+            //     "urls": [
+            //         "https://s3.ca-central-1.amazonaws.com/filesproject/haut.mp4",
+            //         "https://s3.ca-central-1.amazonaws.com/filesproject/haut.webm"
+            //     ],
+            //     "coordinates": videoCoordinates,
+            // },
         },
         "layers": [
         {
@@ -794,6 +794,12 @@ var map = new mapboxgl.Map({
             "minzoom": 0,
             "maxzoom": 24
         }, {
+            "id": "orignal",
+            "type": "raster",
+            "source": "orignal",
+            "minzoom": 0,
+            "maxzoom": 24
+        }, {
             "id": "ortho93",
             "type": "raster",
             "source": "ortho93",
@@ -824,12 +830,6 @@ var map = new mapboxgl.Map({
             "minzoom": 0,
             "maxzoom": 24
         }, {
-            "id": "orignal",
-            "type": "raster",
-            "source": "orignal",
-            "minzoom": 0,
-            "maxzoom": 24
-        }, {
             "id": "begin",
             "type": "raster",
             "source": "begin",
@@ -847,13 +847,13 @@ var map = new mapboxgl.Map({
             "source": "ortho98",
             "minzoom": 0,
             "maxzoom": 24
-        }, {
-            "id": "video",
-            "type": "raster",
-            "source": "video",
+        // }, {
+        //     "id": "video",
+        //     "type": "raster",
+        //     "source": "video",
         }]
     },
-    center: [-71.3741, 47.1802], // starting position
+    center: [-71.36532381254334, 47.17412513772712], // starting position
     zoom: 15,
     hash: false,
     bearing: 0,
