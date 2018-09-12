@@ -1,10 +1,3 @@
-$(document).ready(function () {
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-        $(this).toggleClass('active');
-    });
-});
-
 /*-------------------------------------------------------------------
 |  SETTINGS
 *-------------------------------------------------------------------*/
@@ -286,6 +279,45 @@ var rapids =  [
         length: "50 m",
         lon: -71.44598610714151,
         lat: 47.341194417431296,
+        video: [
+            {
+                name: "monstre2",
+                sources: [
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/monstre2.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/monstre2.webm"
+                ],
+                coordinates: [
+                    [-71.44518516817452, 47.33899716037854 ], 
+                    [-71.44557254447228, 47.33741054276328 ], 
+                    [-71.44696880187733, 47.33757209146984 ], 
+                    [-71.44658568246939, 47.33910966417821 ]
+                ]
+            }, {
+                name: "monstre",
+                sources: [
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/monstre.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/monstre.webm"
+                ],
+                coordinates: [
+                    [-71.44483581733053, 47.34188330639873 ], 
+                    [-71.44573649221796, 47.340479241539214 ], 
+                    [-71.44688450273992, 47.340814449610235 ], 
+                    [-71.44599782794587, 47.34218055859972 ]
+                ]
+            }, {
+                name: "haut",
+                sources: [
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/haut.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/haut.webm"
+                ],
+                coordinates: [
+                    [-71.4461236436418, 47.34813116294191 ], 
+                    [-71.44493042024199, 47.347374720274246 ], 
+                    [-71.4455551007318, 47.34693871540151 ], 
+                    [-71.44674149282133, 47.34766489146162 ]
+                ]
+            },
+        ]
     }, {
         id: 2,
         name: "Le dangereux",
@@ -702,6 +734,12 @@ var map = new mapboxgl.Map({
                 "url": "mapbox://benjaminrosell.3mgsvmbv",
                 "tileSize": 256
             },
+            "begin": {
+                // The Pont Banc
+                "type": "raster",
+                "url": "mapbox://benjaminrosell.1wguz01r",
+                "tileSize": 256
+            },
             "satellite" : {
                 "type": "raster",
                 //"url" : "mapbox://mapbox.run-bike-hike",
@@ -712,8 +750,8 @@ var map = new mapboxgl.Map({
             "video": {
                 "type": "video",
                 "urls": [
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/monstre2.mp4",
-                    "https://s3.ca-central-1.amazonaws.com/filesproject/monstre2.webm"
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/haut.mp4",
+                    "https://s3.ca-central-1.amazonaws.com/filesproject/haut.webm"
                 ],
                 "coordinates": videoCoordinates,
             },
@@ -789,6 +827,12 @@ var map = new mapboxgl.Map({
             "id": "orignal",
             "type": "raster",
             "source": "orignal",
+            "minzoom": 0,
+            "maxzoom": 24
+        }, {
+            "id": "begin",
+            "type": "raster",
+            "source": "begin",
             "minzoom": 0,
             "maxzoom": 24
         }, {
@@ -966,6 +1010,8 @@ map.on('load', function() {
             "text-color": "#F8F714"
         }  
     }, "portages");
+
+    map.resize();
 });
 
 /*-------------------------------------------------------------------
@@ -1093,3 +1139,13 @@ if (debug) {
         map.getCanvas().style.cursor = (features.length) ? 'pointer' : 'crosshair';
     });
 }
+
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+        $(this).toggleClass('active');
+        map.resize();
+    });
+
+    $('.collapse').collapse();
+});
